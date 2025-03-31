@@ -15,7 +15,7 @@ const useProfile = (token: string, deps?: any) => {
 
       setLoading(true)
       setError("")
-      fetch("http://localhost:3001/proxy/profile", {
+      fetch("/api/profile", {
         headers: {
           "content-type": "application/json",
           authorization: "Bearer " + token,
@@ -70,7 +70,7 @@ const useBooking = (token: string, housingId: string, deps?: any) => {
       }
 
       setLoading(true)
-      fetch("http://localhost:3001/proxy/book/" + housingId, {
+      fetch("/api/book/" + housingId, {
         headers: {
           "content-type": "application/json",
           authorization: "Bearer " + token,

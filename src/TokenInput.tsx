@@ -1,4 +1,4 @@
-import { CheckIcon, CopyIcon, ExternalLinkIcon } from "@chakra-ui/icons"
+import { CheckIcon, CopyIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import {
   Accordion,
   AccordionButton,
@@ -14,8 +14,8 @@ import {
   InputRightElement,
   Link,
   useClipboard,
-} from "@chakra-ui/react"
-import { useState } from "react"
+} from '@chakra-ui/react'
+import { useState } from 'react'
 
 interface AccessData {
   access_token: string
@@ -28,13 +28,13 @@ export default function TokenInput({
   onSubmit?: (data: AccessData) => void
 }) {
   const { onCopy, hasCopied } = useClipboard(
-    "JSON.parse(Object.values(localStorage)[2])"
+    'JSON.parse(localStorage[Object.keys(localStorage).find(key=>key.startsWith("oidc"))])'
   )
   const [hasToken, setHasToken] = useState(false)
   const [accessData, setAccessData] = useState<AccessData | null>(null)
 
   return (
-    <Accordion allowToggle borderColor={hasToken ? undefined : "tomato"}>
+    <Accordion allowToggle borderColor={hasToken ? undefined : 'tomato'}>
       <AccordionItem>
         <h2>
           <AccordionButton>
@@ -51,7 +51,7 @@ export default function TokenInput({
               placeholder="Access token"
               variant="filled"
               onChange={(e) => {
-                setHasToken(e.target.value !== "")
+                setHasToken(e.target.value !== '')
                 // Check if the input is a valid JSON
                 try {
                   const json = JSON.parse(e.target.value)
@@ -60,7 +60,7 @@ export default function TokenInput({
                   setAccessData(null)
                 }
               }}
-              borderColor={hasToken ? undefined : "tomato"}
+              borderColor={hasToken ? undefined : 'tomato'}
             />
             <Button
               colorScheme="green"
@@ -80,7 +80,7 @@ export default function TokenInput({
             <InputGroup variant="outline">
               <Input
                 isReadOnly
-                value="JSON.parse(Object.values(localStorage)[2])"
+                value='JSON.parse(localStorage[Object.keys(localStorage).find(key=>key.startsWith("oidc"))])'
               />
               <InputRightElement>
                 <Button onClick={onCopy}>
